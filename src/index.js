@@ -1,19 +1,16 @@
 import './css/styles.css';
-import API from './fetchCountries';
+import { fetchCountries } from './fetchCountries';
+import Notiflix from 'notiflix'
+
 
 const countryInput = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list')
 const countryInfo = document.querySelector('.country-info')
 var debounce = require('lodash.debounce');
 
-// import Notiflix from 'notiflix'
 const DEBOUNCE_DELAY = 300;
 
 countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-
-export {
-    fetchCountries
-};
 
     
 function onSearch(event) {
@@ -23,7 +20,7 @@ function onSearch(event) {
     const searchCountry = form.value.trim();
     console.log('searchCountry', searchCountry)
 
-API.fetchCountries(searchCountry)
+fetchCountries(searchCountry)
     .then(renderCountry)
     .catch(onFetchError)
     // .finally(() => form.reset());
@@ -61,4 +58,4 @@ function onFetchError(error) {
 
 
 
-// console.log('Promise:', API.fetchCountries());
+console.log('Promise:', fetchCountries(peru));
