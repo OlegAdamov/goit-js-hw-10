@@ -1,5 +1,5 @@
 import './css/styles.css';
-import { fetchCountries } from './fetchCountries';
+import {fetchCountries} from './fetchCountries';
 import Notiflix from 'notiflix'
 
 
@@ -17,10 +17,15 @@ function onSearch(event) {
     event.preventDefault();
     const form = event.target;
     // console.log('form', form)
-    const searchCountry = form.value.trim();
-    console.log('searchCountry', searchCountry)
+    const nameCountry = form.value.trim();
+    console.log('nameCountry', nameCountry)
 
-fetchCountries(searchCountry)
+
+
+
+
+
+fetchCountries("searchCountry")
     .then(renderCountry)
     .catch(onFetchError)
     // .finally(() => form.reset());
@@ -36,26 +41,25 @@ function renderCountry(country) {
 function onFetchError(error) {
     // resetMarkup(reset.markup)
     return Notiflix.Notify.failure('Oops, there is no country with that name')
-
 }
     
 
   
-// function markup() {
-//     fetchCountries.map(({ name, capital, population, flags, languages }) =>
-//         `<h1><img src="${flags.svg}" alt="${name.official}" width="60" height="60">${name.official}</h1>
-// <p>Capital: ${capital}</p>
-//       <p>Population: ${population}</p>
-//       <p>Languages: ${Object.values(languages)}</p>`,
-//     )
-//         // .join("");
+function markup() {
+   return fetchCountries.map(({ name, capital, population, flags, languages }) =>
+        `<h1><img src="${flags.svg}" alt="${name.official}" width="60" height="60">${name.official}</h1>
+<p>Capital: ${capital}</p>
+      <p>Population: ${population}</p>
+      <p>Languages: ${Object.values(languages)}</p>`,
+    )
+        .join("");
 
-// console.log('markup', markup)
-// countryInfo.innerHTML = markup;
-// }
-
-
+console.log('markup', markup)
+countryInfo.innerHTML = markup;
+}
 
 
 
-console.log('Promise:', fetchCountries(peru));
+
+
+// console.log(fetchCountries("uk"));
