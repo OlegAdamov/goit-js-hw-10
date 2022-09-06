@@ -17,7 +17,7 @@ countryInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
     
 function onSearch(event) {
     event.preventDefault();
-    nameCountry = countryInput.target.value.trim();
+    nameCountry = event.target.value.trim();
     resetMarkup();
     fetchCountries(nameCountry)
         .then(countries => {
