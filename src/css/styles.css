@@ -18,11 +18,9 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
-
 .link {
   text-decoration: none;
 }
-
 .list {
   list-style: none;
 }
