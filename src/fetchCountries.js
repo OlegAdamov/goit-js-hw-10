@@ -1,24 +1,16 @@
 const BASE_URL = 'https://restcountries.com/v3.1';
 
-
- function fetchCountries(nameCountry) {
-     return fetch(`${BASE_URL}/name/${nameCountry}?fields=name,capital,population,flags,languages`)
+export const fetchCountries = name => {
+     return fetch(`${BASE_URL}/name/${name}?fields=name,capital,population,flags,languages`)
          .then(response => {
-             
-             if (response.status !== 200) {
-                 return Promise.reject(new Error())
+             if (!response.ok) {
+                throw new Error(response.status);
              }
              return response.json();
          })
          .catch(error => {
              console.log(error);
          });
-         
-       
 };
 
-export {
-    fetchCountries
-};
 
-// console.log(fetchCountries("peru"));
